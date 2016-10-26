@@ -22,6 +22,8 @@ class PlayState extends FlxState
 		
 		FlxG.mouse.visible = false;
 		
+		whip = new Weapon();
+		whip.kill();
 		platform = new Obstacle(0, 200);
 		platform.makeGraphic(FlxG.width, 16, 0xFF00FFFF);
 		platform.immovable = true;
@@ -33,15 +35,27 @@ class PlayState extends FlxState
 	}
 
 	override public function update(elapsed:Float):Void
-	{
-		super.update(elapsed);
-		
+	{	
 		FlxG.collide (platform, player);
 		
 		if (FlxG.keys.justPressed.A)
 		{
-			whip = new Weapon (player.x + player.width, player.y + player.width/2);
+			whip.revive();
+			whip.x = player.x + player.width;
+			whip.y = player.y + player.width / 2;
+			whip.animation.play("attack");
 			add (whip);
+		}
+		
+		if (whip.animation.finished)
+		{
+			whip.kill();
+		}
+		super.update(elapsed);
+		if (whip.alive)
+		{
+			whip.x = player.x + player.width;
+			whip.y = player.y + player.width / 2;
 		}
 	}
 }

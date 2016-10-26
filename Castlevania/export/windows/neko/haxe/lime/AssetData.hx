@@ -18,6 +18,8 @@ class AssetData {
 			
 			path.set ("assets/data/data-goes-here.txt", "assets/data/data-goes-here.txt");
 			type.set ("assets/data/data-goes-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
+			path.set ("assets/images/animacionarma.png", "assets/images/animacionarma.png");
+			type.set ("assets/images/animacionarma.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/images-go-here.txt", "assets/images/images-go-here.txt");
 			type.set ("assets/images/images-go-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
 			path.set ("assets/music/music-goes-here.txt", "assets/music/music-goes-here.txt");
@@ -34,6 +36,8 @@ class AssetData {
 			type.set ("flixel/fonts/monsterrat.ttf", Reflect.field (AssetType, "font".toUpperCase ()));
 			path.set ("flixel/images/ui/button.png", "flixel/images/ui/button.png");
 			type.set ("flixel/images/ui/button.png", Reflect.field (AssetType, "image".toUpperCase ()));
+			path.set ("flixel/images/logo/default.png", "flixel/images/logo/default.png");
+			type.set ("flixel/images/logo/default.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			
 			
 			initialized = true;
