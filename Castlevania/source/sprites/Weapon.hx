@@ -2,14 +2,10 @@ package sprites;
 
 import flixel.FlxSprite;
 import flixel.system.FlxAssets.FlxGraphicAsset;
+import flixel.FlxG;
 
-/**
- * ...
- * @author ...
- */
 class Weapon extends FlxSprite
 {
-
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
@@ -19,4 +15,11 @@ class Weapon extends FlxSprite
 		animation.add("attack", [0, 1, 2, 3], 30, false, false, false);
 	}
 	
+	public function interact(enemy:Enemy):Void
+	{
+		if (FlxG.overlap(this, enemy))
+		{
+			enemy.kill();
+		}
+	}
 }
