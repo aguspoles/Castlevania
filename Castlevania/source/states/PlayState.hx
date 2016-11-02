@@ -14,6 +14,9 @@ import sprites.Enemy;
 import sprites.Player;
 import sprites.Obstacle;
 import sprites.Weapon;
+import sprites.Dagger;
+import sprites.Axe;
+import sprites.Pickup;
 
 class PlayState extends FlxState
 {
@@ -23,6 +26,10 @@ class PlayState extends FlxState
 	private var enemys:FlxTypedGroup<Enemy>;
 	private var whip:Weapon;
 	private var platform:Obstacle;
+	private var dagger:Dagger;
+	private var axe:Axe;
+	private var aS:Int;
+	private var pickup:Pickup;
 	
 	override public function create():Void
 	{
@@ -37,8 +44,10 @@ class PlayState extends FlxState
 		platform.makeGraphic(FlxG.width, 16, 0xFF00FFFF);
 		platform.immovable = true;*/
 		
-		//player = new Player(150,200);
+		player = new Player(150,200);
 		enemys = new FlxTypedGroup<Enemy>();
+		pickup = new Pickup(50, 150);
+		aS = player.getArmaSec();
 		
 		loader = new FlxOgmoLoader(AssetPaths.level__oel);
 		tilemap = loader.loadTilemap(AssetPaths.tiles2__png, 8, 8, "tiles");
@@ -49,6 +58,7 @@ class PlayState extends FlxState
 		add(tilemap);
 		add(player);
 		add(enemys);
+		add(pickup);
 	}
 
 	override public function update(elapsed:Float):Void
@@ -58,19 +68,32 @@ class PlayState extends FlxState
 		FlxG.overlap(whip, enemys, whipEnemyCollision);
 		FlxG.overlap(player, enemys, playerEnemyCollision);
 		
+		armaSec();
+		
 		super.update(elapsed);
 		
-		attack();
+		basico();
 	}
 	
-	private function attack():Void
+
+	public function basico ():Void
 	{
 		if (FlxG.keys.justPressed.A)
 		{
 			whip.revive();
-			whip.x = player.x + player.width;
-			whip.y = player.y + player.width / 2;
-			whip.animation.play("attack");
+			if (player.flipX)
+			{
+				whip.x = player.x + player.width + 150;
+				whip.y = player.y + player.width / 2;
+				whip.animation.play("attack");
+			}
+			else
+			{
+				whip.x = player.x + player.width;
+				whip.y = player.y + player.width / 2;
+				whip.animation.play("attack");
+			}
+			
 			add (whip);
 		}
 		
@@ -78,11 +101,56 @@ class PlayState extends FlxState
 		{
 			whip.kill();
 		}
-		
 		if (whip.alive)
 		{
-			whip.x = player.x + player.width;
-			whip.y = player.y + player.width / 2;
+			if (player.flipX)
+			{
+				whip.x = player.x - player.width;
+				whip.flipX = true;
+				whip.y = player.y + player.width / 2;
+			}
+			else
+			{
+				whip.x = player.x + player.width;
+				whip.flipX = false;
+				whip.y = player.y + player.width / 2;
+			}	
+		}
+	}
+	
+	public function armaSec ():Void
+	{
+		aS = player.getArmaSec();
+		
+		if (FlxG.overlap(pickup, player))
+		{
+			player.recibeTipo(pickup.getT());
+			pickup.destroy ();
+		}
+		if (!pickup.exists)
+		{
+			pickup = new Pickup(150, 150);
+			add (pickup);
+		}
+		
+		if (aS == 0)
+		{
+			if (FlxG.keys.justPressed.S)
+			{
+				dagger = new Dagger (player.x + player.width, whip.y = player.y + player.width / 2);
+				add(dagger);
+				aS = 5;
+			}
+		}
+		
+		if (aS == 1)
+		{
+			if (FlxG.keys.justPressed.S)
+				{
+					axe = new Axe (player.x + player.width, whip.y = player.y + player.width / 2);
+					add(axe);
+					aS = 5;
+				}
 		}
 	}
 	
