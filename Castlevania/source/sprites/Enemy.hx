@@ -3,10 +3,7 @@ package sprites;
 import flixel.FlxSprite;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 
-/**
- * ...
- * @author ...
- */
+
 class Enemy extends FlxSprite
 {
 

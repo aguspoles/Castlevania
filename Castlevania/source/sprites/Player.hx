@@ -5,13 +5,10 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxG;
 import flixel.FlxObject;
 
-/**
- * ...
- * @author ...
- */
+
 class Player extends FlxSprite
 {
-	public var whip:Weapon;
+	public var direction:Int = 1;
 	
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
@@ -24,19 +21,33 @@ class Player extends FlxSprite
 	
 	override public function update(elapsed:Float):Void 
 	{		
+		move();	
+		
+		super.update(elapsed);
+	}
+	
+	public function move():Void
+	{
 		velocity.x = 0;
 		
-		if (FlxG.keys.pressed.RIGHT)
+		if (FlxG.keys.pressed.RIGHT){
 			velocity.x += Reg.hSpeed;
+			direction = 1;
+			flipX = false;
+		}
 		
-		if (FlxG.keys.pressed.LEFT)
+		if (FlxG.keys.pressed.LEFT){
 			velocity.x -= Reg.hSpeed;
+			direction = -1;
+			flipX = true;
+		}
 		
 		if (FlxG.keys.justPressed.UP && isTouching(FlxObject.FLOOR))
 			velocity.y = Reg.vSpeed;
 			
-		
-		super.update(elapsed);
+		if ((velocity.y < 0) && (FlxG.keys.justReleased.UP))       
+		    velocity.y = velocity.y * 0.5;
+
 	}
 	
 }
