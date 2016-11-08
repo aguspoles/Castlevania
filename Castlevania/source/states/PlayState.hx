@@ -7,6 +7,7 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 import flixel.group.FlxGroup;
+import flixel.FlxCamera;
 import flixel.addons.editors.ogmo.FlxOgmoLoader;//para cargar el nivel de ogmo
 import flixel.tile.FlxTilemap;//para usarlo
 import flixel.FlxObject;
@@ -34,38 +35,39 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		super.create();
-		
+		//FlxG.debugger.visible = true;
 		FlxG.cameras.bgColor = 0xff0078f8;
 		FlxG.mouse.visible = false;
 		
 		whip = new Weapon();
 		whip.kill();
-		/*platform = new Obstacle(0, 200);
-		platform.makeGraphic(FlxG.width, 16, 0xFF00FFFF);
-		platform.immovable = true;*/
 		
-		player = new Player(150,200);
 		enemys = new FlxTypedGroup<Enemy>();
 		pickup = new Pickup(50, 150);
-		aS = player.getArmaSec();
 		
 		loader = new FlxOgmoLoader(AssetPaths.level__oel);
-		tilemap = loader.loadTilemap(AssetPaths.tiles2__png, 8, 8, "tiles");
+		tilemap = loader.loadTilemap(AssetPaths.tiles2__png, 24, 24, "tiles");
 		loader.loadEntities(entityCreator, "entities");
 		tilemap.setTileProperties(0, FlxObject.NONE);
 		tilemap.setTileProperties(1, FlxObject.ANY);
+		
+		aS = player.getArmaSec();
 		
 		add(tilemap);
 		add(player);
 		add(enemys);
 		add(pickup);
+		FlxG.camera.follow(player, FlxCameraFollowStyle.PLATFORMER);
+		FlxG.camera.setScrollBounds(0, tilemap.width, 0, tilemap.height);
+		FlxG.worldBounds.set(0, 0, tilemap.width, tilemap.height);
 	}
 
 	override public function update(elapsed:Float):Void
 	{	
 		FlxG.collide(tilemap, player);
 		FlxG.collide(tilemap, enemys);
-		FlxG.overlap(whip, enemys, whipEnemyCollision);
+		//FlxG.overlap(whip, enemys, whipEnemyCollision);
+		whipEnemyCollision(whip, enemys);
 		FlxG.overlap(player, enemys, playerEnemyCollision);
 		
 		armaSec();
@@ -158,16 +160,14 @@ class PlayState extends FlxState
 	{
 		for (i in 0...enemys.length)
 		{
-			whip.interact(enemys.members[i]);
+			if(FlxG.overlap(enemys.members[i],whip))
+			   whip.interact(enemys.members[i]);
 		}
 	}
 	
 	private function playerEnemyCollision(player:Player, enemys:FlxTypedGroup<Enemy>):Void
 	{
-		for (i in 0...enemys.length)
-		{
-			player.interact(enemys.members[i]);
-		}
+	    player.kill();
 	}
 	
 	private function entityCreator(entityName:String, entityData:Xml):Void
@@ -181,7 +181,7 @@ class PlayState extends FlxState
 		{
 			//	...y creo la entidad y seteo sus cosillas.
 			case "player":
-				player = new sprites.Player(entityStartX, entityStartY);
+				player = new Player(entityStartX, entityStartY);
 			case "enemigo1":
 				    enemys.add(new Enemy(entityStartX, entityStartY));
 			case "enemigo2":

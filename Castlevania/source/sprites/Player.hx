@@ -12,13 +12,13 @@ class Player extends FlxSprite
 	public var direction:Int = 1;
 	private var vidas = 10;
 	private var pickup:Int = 5;
-	private var armaSec:FlxRandom = new FlxRandom();
+	private var armaSec:FlxRandom;
 	private var aS:Int;
 	
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
-		
+		armaSec = new FlxRandom();
 		makeGraphic(16, 32);
 		
 		acceleration.y = Reg.vAccel;
@@ -28,7 +28,7 @@ class Player extends FlxSprite
 	{		
 		move();
 		fPickup();
-		
+
 		super.update(elapsed);
 	}
 	
@@ -53,7 +53,6 @@ class Player extends FlxSprite
 			
 		if ((velocity.y < 0) && (FlxG.keys.justReleased.UP))       
 		    velocity.y = velocity.y * 0.5;
-
 	}
 	
 	public function interact(enemy:Enemy):Void

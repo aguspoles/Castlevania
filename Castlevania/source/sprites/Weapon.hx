@@ -17,9 +17,6 @@ class Weapon extends FlxSprite
 	
 	public function interact(enemy:Enemy):Void
 	{
-		if (FlxG.overlap(this, enemy))
-		{
-			enemy.kill();
-		}
+		enemy.kill();
 	}
 }
