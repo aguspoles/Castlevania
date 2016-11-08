@@ -137,22 +137,27 @@ class PlayState extends FlxState
 		
 		if (aS == 0)
 		{
-			if (FlxG.keys.justPressed.S)
+			if (FlxG.keys.justPressed.S && dagger.ammo > 0)
 			{
 				dagger = new Dagger (player.x + player.width, whip.y = player.y + player.width / 2);
 				add(dagger);
-				aS = 5;
+				dagger.ammo--;
 			}
+			else 
+			aS = 5;
 		}
 		
 		if (aS == 1)
 		{
-			if (FlxG.keys.justPressed.S)
+			if (FlxG.keys.justPressed.S && axe.ammo > 0)
 				{
 					axe = new Axe (player.x + player.width, whip.y = player.y + player.width / 2);
 					add(axe);
-					aS = 5;
+					axe.ammo--;
+					
 				}
+			else
+			aS = 5;
 		}
 	}
 	

@@ -30,12 +30,20 @@ class ApplicationMain {
 		var types = [];
 		
 		
-		urls.push ("assets/data/data-goes-here.txt");
+		urls.push ("assets/data/level.oel");
 		types.push (lime.Assets.AssetType.TEXT);
 		
 		
-		urls.push ("assets/images/images-go-here.txt");
+		urls.push ("assets/data/P.oep");
 		types.push (lime.Assets.AssetType.TEXT);
+		
+		
+		urls.push ("assets/images/animacionarma.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/tiles2.png");
+		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
 		urls.push ("assets/music/music-goes-here.txt");
@@ -43,22 +51,6 @@ class ApplicationMain {
 		
 		
 		urls.push ("assets/sounds/sounds-go-here.txt");
-		types.push (lime.Assets.AssetType.TEXT);
-		
-		
-		urls.push ("assets/sprites/Enemy.hx");
-		types.push (lime.Assets.AssetType.TEXT);
-		
-		
-		urls.push ("assets/sprites/Obstacle.hx");
-		types.push (lime.Assets.AssetType.TEXT);
-		
-		
-		urls.push ("assets/sprites/Player.hx");
-		types.push (lime.Assets.AssetType.TEXT);
-		
-		
-		urls.push ("assets/sprites/Weapon.hx");
 		types.push (lime.Assets.AssetType.TEXT);
 		
 		
@@ -171,7 +163,7 @@ class ApplicationMain {
 					stencilBuffer: true,
 					title: "Castlevania",
 					vsync: true,
-					width: 640,
+					width: 512,
 					x: null,
 					y: null
 				},
@@ -189,7 +181,7 @@ class ApplicationMain {
 		
 		#if (js && html5)
 		#if (munit || utest)
-		openfl.Lib.embed (null, 640, 480, "000000");
+		openfl.Lib.embed (null, 512, 480, "000000");
 		#end
 		#else
 		create ();
