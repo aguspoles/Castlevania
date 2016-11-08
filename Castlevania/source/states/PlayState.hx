@@ -66,7 +66,6 @@ class PlayState extends FlxState
 	{	
 		FlxG.collide(tilemap, player);
 		FlxG.collide(tilemap, enemys);
-		//FlxG.overlap(whip, enemys, whipEnemyCollision);
 		whipEnemyCollision(whip, enemys);
 		FlxG.overlap(player, enemys, playerEnemyCollision);
 		
