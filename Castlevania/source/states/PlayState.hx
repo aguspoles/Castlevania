@@ -34,7 +34,7 @@ class PlayState extends FlxState
 	private var aS:Int;
 	private var pickup:Pickup;
 	private var _hud:HUD;
-	private var obstacle:FlxTypedButton<Obstacle>;
+	private var obstacle:FlxTypedGroup<Obstacle>;
 	
 	override public function create():Void
 	{
@@ -47,6 +47,7 @@ class PlayState extends FlxState
 		whip.kill();
 		
 		enemys = new FlxTypedGroup<Enemy>();
+		obstacle = new FlxTypedGroup<Obstacle>();
 		pickup = new Pickup(50, 150);
 		_hud = new HUD();
 		
@@ -76,7 +77,7 @@ class PlayState extends FlxState
 		FlxG.collide(obstacle, tilemap);
 		FlxG.collide(tilemap, enemys);
 		whipEnemyCollision(whip, enemys);
-		FlxG.overlap(player, enemys, playerEnemyCollision);
+		FlxG.collide(player, enemys, playerEnemyCollision);
 		
 		armaSec();
 	

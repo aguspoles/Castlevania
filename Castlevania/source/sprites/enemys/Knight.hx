@@ -20,17 +20,5 @@ class Knight extends Enemy
 	{
 		move();
 	}
-	
-	public function move ():Void
-	{
-		timer ++;
-		velocity.
-		if (timer <= 60))
-		{
-			velocity.x += Reg.hSpeed;
-			direction = 1;
-		}
-
-	}
 
 }
