@@ -10,6 +10,7 @@ class Enemy extends FlxSprite
 	private var _direction:Int = -1;    
 	private var _appeared:Bool = false;
 	private var speed:Int = 100;
+	private var timer:Int = 0;
 	
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
@@ -20,7 +21,7 @@ class Enemy extends FlxSprite
 	
 	override public function update(elapsed:Float) 
 	{    
-		if (!inWorldBounds())
+		/*if (!inWorldBounds())
 		    exists = false;
         if (isOnScreen()) 
 	        _appeared = true;
@@ -30,7 +31,7 @@ class Enemy extends FlxSprite
 			
 		    if (justTouched(FlxObject.WALL)) 
 				flipDirection();
-	    }
+	    }*/
 		
         super.update(elapsed);
 	}
