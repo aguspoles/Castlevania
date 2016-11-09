@@ -21,18 +21,6 @@ class Enemy extends FlxSprite
 	
 	override public function update(elapsed:Float) 
 	{    
-		/*if (!inWorldBounds())
-		    exists = false;
-        if (isOnScreen()) 
-	        _appeared = true;
-	    if (_appeared && alive)    
-	    {   
-			move();
-			
-		    if (justTouched(FlxObject.WALL)) 
-				flipDirection();
-	    }*/
-		
         super.update(elapsed);
 	}
 	
