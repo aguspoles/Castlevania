@@ -3,10 +3,7 @@ package sprites.enemys;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import sprites.Enemy;
 
-/**
- * ...
- * @author ...
- */
+
 class Bat extends Enemy
 {
 

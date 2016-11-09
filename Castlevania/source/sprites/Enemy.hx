@@ -10,10 +10,6 @@ class Enemy extends FlxSprite
 	private var _direction:Int = -1;    
 	private var _appeared:Bool = false;
 	
-	private var timer:Int = 0;
-	private var direction:Int = 0;
-	private var vida:Int = 0;
-	
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
@@ -29,8 +25,9 @@ class Enemy extends FlxSprite
 	        _appeared = true;
 	    if (_appeared && alive)    
 	    {   
+			move();
 		    if (justTouched(FlxObject.WALL))           
-		        flipDirection();        
+		        flipDirection();    
 	    }
 		
         super.update(elapsed);
@@ -40,5 +37,10 @@ class Enemy extends FlxSprite
 	{    
 		flipX = !flipX;   
 		_direction = -_direction; 
+	}
+	
+	private function move():Void
+	{
+		velocity.x *= _direction;
 	}
 }

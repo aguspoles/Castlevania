@@ -19,6 +19,7 @@ class Obstacle extends FlxSprite
 	{    
 		if (justTouched(FlxObject.WALL))
             velocity.x *= -1;
+			
         super.update(elapsed);
 	}
 	
