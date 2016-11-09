@@ -11,6 +11,7 @@ import flixel.FlxCamera;
 import flixel.addons.editors.ogmo.FlxOgmoLoader;//para cargar el nivel de ogmo
 import flixel.tile.FlxTilemap;//para usarlo
 import flixel.FlxObject;
+import source.sprites.enemys.Skeleton;
 import sprites.Enemy;
 import sprites.HUD;
 import sprites.Reg;
@@ -20,6 +21,8 @@ import sprites.Weapon;
 import sprites.Dagger;
 import sprites.Axe;
 import sprites.Pickup;
+import sprites.enemys.Bat;
+import source.sprites.enemys.Knight;
 
 class PlayState extends FlxState
 {
@@ -196,11 +199,11 @@ class PlayState extends FlxState
 			case "player":
 				player = new Player(entityStartX, entityStartY);
 			case "enemigo1":
-				    enemys.add(new Enemy(entityStartX, entityStartY));
+				    enemys.add(new Skeleton(entityStartX, entityStartY));
 			case "enemigo2":
-				    enemys.add(new Enemy(entityStartX, entityStartY));
+				    enemys.add(new Knight(entityStartX, entityStartY));
 			case "enemigo3":
-				    enemys.add(new Enemy(entityStartX, entityStartY));
+				    enemys.add(new Bat(entityStartX, entityStartY));
 			case "boss":
 				    enemys.add(new Enemy(entityStartX, entityStartY));
 			/*case "desaparese":
