@@ -18,5 +18,6 @@ class Weapon extends FlxSprite
 	public function interact(enemy:Enemy):Void
 	{
 		enemy.kill();
+		Reg.score += 10;
 	}
 }
