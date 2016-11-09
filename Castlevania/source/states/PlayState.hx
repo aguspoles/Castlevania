@@ -72,7 +72,7 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{	
 		FlxG.collide(tilemap, player);
-		FlxG.
+		FlxG.collide(obstacle, player);
 		FlxG.collide(obstacle, tilemap);
 		FlxG.collide(tilemap, enemys);
 		whipEnemyCollision(whip, enemys);
@@ -128,7 +128,7 @@ class PlayState extends FlxState
 		}
 	}
 	
-	public function armaSec ():Void
+	public function armaSec():Void
 	{
 		aS = player.getArmaSec();
 		
