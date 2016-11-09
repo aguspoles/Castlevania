@@ -1,37 +1,41 @@
 package sprites.enemys;
 
+<<<<<<< HEAD
+=======
+package source.sprites.enemys;
+
+import sprites.Enemy;
+
+import flixel.FlxSprite;
+import flixel.system.FlxAssets.FlxGraphicAsset;
+import flixel.FlxG;
+import flixel.FlxObject;
+>>>>>>> a4da7bfaaca1e8c49e036020d5c2e1c20891fbcd
 
 class Knight extends Enemy
 {
 
-	public function new() 
+	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
-		
+		super(?X, ?Y, ?SimpleGraphic);
+		vida = 1;
 	}
 	
-	public function move():Void
+	override public function update(elapsed:Float):Void 
 	{
-		timer++;
-		
-		if (timer <= 60 && isTouching(FlxObject.FLOOR))
+		move();
+	}
+	
+	public function move ():Void
+	{
+		timer ++;
+		velocity.
+		if (timer <= 60))
 		{
 			velocity.x += Reg.hSpeed;
 			direction = 1;
 		}
-		
-		else if (timer > 60 && timer < 120 && isTouching(FlxObject.FLOOR)
-		{
-			velocity.x -= Reg.hSpeed;
-			direction = -1;
-			timer = 0;
-		}
-		
-		else
-		{
-			direction = 0;
-			velocity.x = 0;
-		}
-		
+
 	}
-	
+
 }
