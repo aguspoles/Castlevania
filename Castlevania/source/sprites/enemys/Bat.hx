@@ -14,6 +14,12 @@ class Bat extends Enemy
 	{
 		super(X, Y, SimpleGraphic);
 		velocity.y = 0;
+		
+		loadGraphic(AssetPaths.batps__png, true, 24, 24);
+		animation.add("main", [0, 1, 2, 3] , 16 , true);
+		animation.play("main");
+		
+		
 	}
 	
 	override public function update(elapsed:Float):Void 
