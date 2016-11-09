@@ -34,7 +34,7 @@ class PlayState extends FlxState
 	private var aS:Int;
 	private var pickup:Pickup;
 	private var _hud:HUD;
-	private var obstacle:Obstacle;
+	private var obstacle:FlxTypedButton<Obstacle>;
 	
 	override public function create():Void
 	{
@@ -72,13 +72,14 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{	
 		FlxG.collide(tilemap, player);
+		FlxG.
 		FlxG.collide(obstacle, tilemap);
 		FlxG.collide(tilemap, enemys);
 		whipEnemyCollision(whip, enemys);
 		FlxG.overlap(player, enemys, playerEnemyCollision);
 		
 		armaSec();
-		
+	
 		super.update(elapsed);
 		
 		basico();
@@ -206,7 +207,7 @@ class PlayState extends FlxState
 			/*case "desaparese":
 				    add(entityStartX, entityStartY));*/
 			case "semueve":
-				    obstacle = new Obstacle(entityStartX, entityStartY);
+				    obstacle.add(new Obstacle(entityStartX, entityStartY));
 		}
 
 	}

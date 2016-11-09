@@ -1,16 +1,11 @@
 package sprites.enemys;
 
-<<<<<<< HEAD
-=======
-package source.sprites.enemys;
-
 import sprites.Enemy;
 
 import flixel.FlxSprite;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxG;
 import flixel.FlxObject;
->>>>>>> a4da7bfaaca1e8c49e036020d5c2e1c20891fbcd
 
 class Knight extends Enemy
 {
