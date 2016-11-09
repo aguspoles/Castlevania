@@ -39,7 +39,7 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		super.create();
-		//FlxG.debugger.visible = true;
+		FlxG.debugger.visible = true;
 		FlxG.cameras.bgColor = 0xff0078f8;
 		FlxG.mouse.visible = false;
 		

@@ -18,8 +18,9 @@ class Obstacle extends FlxSprite
 	override public function update(elapsed:Float) 
 	{    
 		if (justTouched(FlxObject.WALL))
+		{
             velocity.x *= -1;
-			
+		}
         super.update(elapsed);
 	}
 	
